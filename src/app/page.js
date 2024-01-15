@@ -66,7 +66,7 @@ export default function Home() {
   return (
     <main className="flex h-screen w-full items-center justify-center  bg-[#161A30]">
       <div className="w-full max-w-xl flex flex-col space-y-4">
-        <h1 className="text-black font-bold text-2xl text-center uppercase text-white">DevFinder</h1>
+        <h1 className=" font-bold text-2xl text-center uppercase text-white">DevFinder</h1>
         <div>
           <form onSubmit={handleSubmit}>
             <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
