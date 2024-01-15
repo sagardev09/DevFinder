@@ -47,10 +47,16 @@ export default function Home() {
       const mostUsedLanguage = Object.keys(languageCounts).reduce((a, b) => languageCounts[a] > languageCounts[b] ? a : b);
 
       // Set state with fetched data
+      const accessKey = '_wCzPOlJCxuq58bhz0Mt5C2SUiDGiwFMU1JG8KKTWdM';
+
+      const randompic = await fetch(`https://api.unsplash.com/photos/random?query=coding&client_id=${accessKey}`)
+      const respic = await randompic.json()
+
       setprofile({
         ...profileData,
         repos: reposData,
-        mostUsedLanguage: mostUsedLanguage
+        mostUsedLanguage: mostUsedLanguage,
+        codingimg: respic?.urls?.regular
       });
       console.log(profile);
       seterror(null)
@@ -68,6 +74,8 @@ export default function Home() {
     <main className="flex h-screen w-full items-center justify-center  bg-[#161A30]">
       <div className="w-full max-w-xl flex flex-col space-y-4">
         <h1 className=" font-bold text-2xl text-center uppercase text-white">DevFinder</h1>
+        <h5 className=" font-bold text-sm text-center  text-white">
+          Discover GitHub profiles effortlessly. Explore repos, top languages and many more and download it as a card.</h5>
         <div>
           <form onSubmit={handleSubmit}>
             <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
@@ -85,12 +93,13 @@ export default function Home() {
             </div>
           </form>
         </div>
-
-        {profile?.login ? (
-          <DevProfile profile={profile} />
-        ) : (
-          defaultpic && <Image src={search} alt="" className="h-[180px]" />
-        )}
+        <div>
+          {profile?.login ? (
+            <DevProfile profile={profile} />
+          ) : (
+            defaultpic && <Image src={search} alt="" className="h-[180px]" />
+          )}
+        </div>
         <div className="flex items-center justify-center">
           {
             isLoading && <MagnifyingGlass
