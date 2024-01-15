@@ -1,0 +1,55 @@
+body {
+    --tw-bg-opacity: 1;
+    background-color: rgb(22 26 48 / var(--tw-bg-opacity));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+#card {
+    font-weight: bold;
+    padding: 1em;
+    color: #181a1a;
+    width: 80%;
+    height: 100%;
+    box-shadow: 0 1px 5px #dbdbdb99;
+    border-radius: 10px;
+    background-size: cover;
+    position: relative;
+    transition-duration: 300ms;
+    transition-property: transform, box-shadow;
+    transition-timing-function: ease-out;
+    perspective: 1200px;
+    transform-style: preserve-3d;
+    cursor: pointer;
+  }
+  
+  #card:hover {
+    transition-duration: 150ms;
+    box-shadow: 0 5px 20px 5px #00000044;
+    transform: rotateY(10deg) scale(1.05);
+  }
+  
+  #glow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-image: radial-gradient(circle at 50% -20%, #ffffff05, #0000000f);
+    pointer-events: none;
+  }
+  
+  #card:hover #glow {
+    background-image: radial-gradient(circle at 50% 50%, #ffffff55, #0000000f);
+  }
+  
+
+  @media only screen and  (max-width: 600px) {
+
+    #card {
+      width: 100%;
+      padding: 0%;
+    }
+  }
