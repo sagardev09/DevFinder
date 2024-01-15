@@ -13,15 +13,9 @@ export default function Home() {
   const [isLoading, setisLoading] = useState(false)
   const [error, seterror] = useState(null)
   const [defaultpic, setdefaultpic] = useState(true)
-  const [repos, setRepos] = useState([]);
 
 
   // Fetch user repositories
-
-
-
-
-
 
   const handleSubmit = async (e) => {
     setisLoading(true);
@@ -58,7 +52,6 @@ export default function Home() {
         mostUsedLanguage: mostUsedLanguage,
         codingimg: respic?.urls?.regular
       });
-      console.log(profile);
       seterror(null)
 
       setisLoading(false);

@@ -45,6 +45,7 @@ const DevProfile = ({ profile }) => {
                         </div>
                         <div>
                             <h5 className='capitalize text-xs font-normal text-white'>{dateFormat(profile?.created_at, "dd mmm yyyy")}</h5>
+                            <h5 onClick={() => router.push(`/profile/${profile?.login}`)} className='bg-blue-500 p-2 px-4 text-[10px] mt-2 text-white cursor-pointer rounded-xl'>More info</h5>
                         </div>
                     </div>
                     <div className='flex items-center justify-between my-3'>
