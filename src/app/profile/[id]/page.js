@@ -167,7 +167,7 @@ const Profile = ({ params }) => {
                                         </div>
                                         <div className="w-full sm:w-1/2 md:w-2/12 lg:w-2/12 xl:w-2/12 text-left mb-2 sm:mb-0 border-r-[1px] border-gray-300">
                                             <h5 className="font-bold overflow-hidden overflow-ellipsis whitespace-nowrap">
-                                                {item?.language}
+                                                {item?.language ? item?.language : "Unknown"}
                                             </h5>
                                         </div>
                                         <div className="w-full sm:w-1/2 md:w-2/12 lg:w-2/12 xl:w-2/12 text-left mb-2 sm:mb-0 flex items-center gap-2">
