@@ -53,6 +53,7 @@ export default function Home() {
         mostUsedLanguage: mostUsedLanguage
       });
       console.log(profile);
+      seterror(null)
 
       setisLoading(false);
     } catch (error) {
