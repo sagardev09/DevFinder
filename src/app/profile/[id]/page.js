@@ -95,7 +95,7 @@ const Profile = ({ params }) => {
                         />
                     </div>
                     :
-                    <div className='h-screen w-screen p-8 bg-[#161A30] flex flex-col space-y-3 overflow-hidden'>
+                    <div className='h-screen w-screen p-8 bg-[rgb(22,26,48)] flex flex-col space-y-3 overflow-hidden'>
                         <div onClick={() => router.push("/")}>
                             <ArrowLeftCircle className='text-gray-200 h-8 cursor-pointer w-8' />
                         </div>

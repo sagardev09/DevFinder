@@ -43,7 +43,7 @@ export default function Home() {
       // Set state with fetched data
       const accessKey = '_wCzPOlJCxuq58bhz0Mt5C2SUiDGiwFMU1JG8KKTWdM';
 
-      const randompic = await fetch(`https://api.unsplash.com/photos/random?query=coding&client_id=${accessKey}`)
+      const randompic = await fetch(`https://api.unsplash.com/photos/random?query=code&client_id=${accessKey}`)
       const respic = await randompic.json()
 
       setprofile({
@@ -64,7 +64,7 @@ export default function Home() {
 
 
   return (
-    <main className="flex h-screen w-full items-center justify-center  bg-[#161A30]">
+    <main className="flex flex-wrap h-screen w-full items-center justify-center px-2 py-2 bg-[#161A30]">
       <div className="w-full max-w-xl flex flex-col space-y-4">
         <h1 className=" font-bold text-2xl text-center uppercase text-white">DevFinder</h1>
         <h5 className=" font-bold text-sm text-center  text-white">
