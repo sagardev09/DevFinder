@@ -1,56 +1,57 @@
 "use client"
 import { Building2, Link, MapPin, Twitter } from 'lucide-react'
 import Image from 'next/image'
-import React, { useRef,useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import dateFormat from 'dateformat'
 import * as htmlToImage from 'html-to-image';
 import './Card.css'
 import { toPng, toJpeg, toBlob, toPixelData, toSvg } from 'html-to-image';
+import { motion } from 'framer-motion'
 
 const DevProfile = ({ profile }) => {
     const profileRef = useRef();
     const router = useRouter();
-  
+
     const downloadAsImage = () => {
-      htmlToImage.toPng(profileRef.current)
-        .then((dataUrl) => {
-          const link = document.createElement('a');
-          link.href = dataUrl;
-          link.download = 'devProfile.png';
-          link.click();
-        });
+        htmlToImage.toPng(profileRef.current)
+            .then((dataUrl) => {
+                const link = document.createElement('a');
+                link.href = dataUrl;
+                link.download = 'devProfile.png';
+                link.click();
+            });
     };
-  
+
     const handleMouseEnter = () => {
-      const bounds = profileRef.current?.getBoundingClientRect();
-      if (bounds) {
-        document.addEventListener('mousemove', rotateToMouse);
-      }
+        const bounds = profileRef.current?.getBoundingClientRect();
+        if (bounds) {
+            document.addEventListener('mousemove', rotateToMouse);
+        }
     };
-  
+
     const handleMouseLeave = () => {
-      document.removeEventListener('mousemove', rotateToMouse);
-      resetCardTransform();
+        document.removeEventListener('mousemove', rotateToMouse);
+        resetCardTransform();
     };
-  
+
     const resetCardTransform = () => {
-      profileRef.current.style.transform = '';
-      profileRef.current.querySelector('#glow').style.backgroundImage = '';
+        profileRef.current.style.transform = '';
+        profileRef.current.querySelector('#glow').style.backgroundImage = '';
     };
-  
+
     const rotateToMouse = (e) => {
-      const bounds = profileRef.current?.getBoundingClientRect();
-      if (bounds) {
-        const mouseX = e.clientX - bounds.x || 0;
-        const mouseY = e.clientY - bounds.y || 0;
-        const center = {
-          x: mouseX - bounds.width / 2,
-          y: mouseY - bounds.height / 2,
-        };
-        const distance = Math.sqrt(center.x ** 2 + center.y ** 2);
-  
-        profileRef.current.style.transform = `
+        const bounds = profileRef.current?.getBoundingClientRect();
+        if (bounds) {
+            const mouseX = e.clientX - bounds.x || 0;
+            const mouseY = e.clientY - bounds.y || 0;
+            const center = {
+                x: mouseX - bounds.width / 2,
+                y: mouseY - bounds.height / 2,
+            };
+            const distance = Math.sqrt(center.x ** 2 + center.y ** 2);
+
+            profileRef.current.style.transform = `
           scale3d(1.07, 1.07, 1.07)
           rotate3d(
             ${center.y / 100},
@@ -59,8 +60,8 @@ const DevProfile = ({ profile }) => {
             ${Math.log(distance) * 2}deg
           )
         `;
-  
-        profileRef.current.querySelector('#glow').style.backgroundImage = `
+
+            profileRef.current.querySelector('#glow').style.backgroundImage = `
           radial-gradient(
             circle at ${center.x * 2 + bounds.width / 2}px
             ${center.y * 2 + bounds.height / 2}px,
@@ -68,20 +69,20 @@ const DevProfile = ({ profile }) => {
             #0000000f
           )
         `;
-      }
+        }
     };
-    
+
 
 
     return (
         <div className='flex flex-col justify-center items-center'>
-            <div 
-            ref={profileRef} 
-             id='card' 
-             className='shadow-2xl w-full flex flex-col  bg-gray-700 rounded-md relative'
-             onMouseEnter={handleMouseEnter}
-             onMouseLeave={handleMouseLeave}
-                >
+            <div
+                ref={profileRef}
+                id='card'
+                className='shadow-2xl w-full flex flex-col  bg-gray-700 rounded-md relative'
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+            >
                 <div id="glow" />
                 <div className='w-full rounded-tr-md rounded-tl-md'>
                     <Image className='w-full h-[150px]  object-cover object-center rounded-tr-md rounded-tl-md' src={profile?.codingimg} alt={profile.name} width={100} height={100} />
@@ -100,7 +101,9 @@ const DevProfile = ({ profile }) => {
                         </div>
                         <div>
                             <h5 className='capitalize text-xs font-normal text-white'>{dateFormat(profile?.created_at, "dd mmm yyyy")}</h5>
-                            <h5 onClick={() => router.push(`/profile/${profile?.login}`)} className='bg-blue-500 p-2 px-4 text-[10px] mt-2 text-white cursor-pointer rounded-xl'>More info</h5>
+                            <motion.h5 whileTap={{
+                                scale: 0.9
+                            }} onClick={() => router.push(`/profile/${profile?.login}`)} className='bg-blue-500 p-2 px-4 text-[10px] mt-2 text-white cursor-pointer rounded-xl'>More info</motion.h5>
                         </div>
                     </div>
                     <div className='flex items-center justify-between my-3'>
@@ -158,10 +161,12 @@ const DevProfile = ({ profile }) => {
                     className="absolute inset-x-0 bottom-0 h-1 rounded-bl-sm rounded-br-sm bg-gradient-to-r from-green-300 via-blue-500 to-purple-600"
                 ></span>
             </div>
-            
-            <div className='w-full text-center bg-blue-500 text-white p-3 cursor-pointer rounded-md mt-3'>
-                <button className='w-3/5' onClick={downloadAsImage}>Download</button>
-            </div>
+
+
+            <motion.button whileTap={{
+                scale: 0.9
+            }} className=' w-full text-center bg-blue-500 text-white p-3 cursor-pointer rounded-md mt-3' onClick={downloadAsImage}>Download</motion.button>
+
         </div>
     );
 };
