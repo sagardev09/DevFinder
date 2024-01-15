@@ -7,6 +7,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import copy from 'clipboard-copy';
 import { toast } from 'react-toastify'
+import { Triangle } from 'react-loader-spinner'
 
 const Profile = ({ params }) => {
 
@@ -82,7 +83,17 @@ const Profile = ({ params }) => {
         <>
             {
                 isLoading ?
-                    <div className='h-screen w-screen flex items-center justify-center'>loading...</div>
+                    <div className='h-screen w-screen flex items-center justify-center bg-[#161A30]'>
+                        <Triangle
+                            visible={true}
+                            height="80"
+                            width="80"
+                            color="#ffffff"
+                            ariaLabel="triangle-loading"
+                            wrapperStyle={{}}
+                            wrapperClass=""
+                        />
+                    </div>
                     :
                     <div className='h-screen w-screen p-8 bg-[#161A30] flex flex-col space-y-3 overflow-hidden'>
                         <div onClick={() => router.push("/")}>
